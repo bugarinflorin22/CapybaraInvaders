@@ -2,7 +2,7 @@ import pygame
 
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((1280, 720))
+screen = pygame.display.set_mode((1920,1080))
 clock = pygame.time.Clock()
 running = True
 
@@ -14,7 +14,8 @@ while running:
             running = False
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
+    background_image = pygame.image.load("Art/background.jpg")
+    screen.blit(background_image, [0, 0])
 
     # RENDER YOUR GAME HERE
 

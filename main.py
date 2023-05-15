@@ -15,7 +15,8 @@ while running:
 
     # fill the screen with a color to wipe away anything from last frame
     background_image = pygame.image.load("Art/background.png")
-    screen.blit(background_image, [0, 0])
+    scaled_image = pygame.transform.scale(background_image, (screen.get_width(), screen.get_height()))
+    screen.blit(scaled_image, [0,0])
 
     # RENDER YOUR GAME HERE
 

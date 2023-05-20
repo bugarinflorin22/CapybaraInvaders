@@ -1,28 +1,46 @@
 import pygame
+from Scripts.ScreenFader import ScreenFader
 
-# pygame setup
+
 pygame.init()
-screen = pygame.display.set_mode((1960,1080))
-clock = pygame.time.Clock()
 running = True
+clock = pygame.time.Clock()
+
+screen = pygame.display.set_mode((1024, 720))
+screen_width, screen_height = screen.get_size()
+background_image = pygame.image.load("Art/background.png")
+scaled_image = pygame.transform.scale(background_image, (screen.get_width(), screen.get_height()))
+background = scaled_image.get_rect()
+background.height = screen_height
+background.width = screen_width
+background.bottomright
+
+fade_screen_color = (255, 0, 0, 255)
+screen_width, screen_height = screen.get_size()
+screen_fade = pygame.Surface((screen_width, screen_height), pygame.SRCALPHA)
+
+screenFader = ScreenFader(screen, screen_fade, screen_width, screen_height, 255)
+screenFader.create_fade_screen()
+screenFader.alpha = 255
+
+done = True
 
 while running:
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
+    if done:
+        screen.blit(scaled_image, background)
+        screenFader.update_fade_screen()
+        screenFader.alpha -= 0.5
+        pygame.display.flip()
+        if screenFader.alpha == 0:
+            screen.blit(scaled_image, background)
+            pygame.display.flip()
+            done = False
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    # fill the screen with a color to wipe away anything from last frame
-    background_image = pygame.image.load("Art/background.png")
-    scaled_image = pygame.transform.scale(background_image, (screen.get_width(), screen.get_height()))
-    screen.blit(scaled_image, [0,0])
+    clock.tick(60)
 
-    # RENDER YOUR GAME HERE
-
-    # flip() the display to put your work on screen
-    pygame.display.flip()
-
-    clock.tick(60)  # limits FPS to 60
 
 pygame.quit()

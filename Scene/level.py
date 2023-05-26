@@ -14,18 +14,23 @@ red = (255, 0, 0)
 screen_width, screen_height = screen.get_size()
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Capybara Invaders")
-background_image = pygame.image.load("background_level.png")
+background_image = pygame.image.load("../Art/level/background_level.png")
 scaled_image = pygame.transform.scale(background_image, (screen.get_width(), screen.get_height()))
 background = scaled_image.get_rect()
 background.height = screen_height
 background.width = screen_width
 background.bottomright
 
+all_sprites = pygame.sprite.Group()
+bullets = pygame.sprite.Group()
+enemies = pygame.sprite.Group()
+bombs = pygame.sprite.Group()
 
-class SpaceShip():
+
+class SpaceShip(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("spaceship.png")
+        self.image = pygame.image.load("../Art/player/spaceship.png")
         self.rect = self.image.get_rect()
         self.rect.centerx = screen_width // 2
         self.rect.bottom = screen_height - 0
@@ -50,6 +55,11 @@ class SpaceShip():
         all_sprites.add(bullet)
         bullets.add(bullet)
 
+player = SpaceShip()
+all_sprites.add(player)
+
+
+
 
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -67,10 +77,10 @@ class Bullet(pygame.sprite.Sprite):
             self.kill()
 
 
-class Enemy():
+class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("enemy.png")
+        self.image = pygame.image.load("../Art/level/enemy.png")
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(screen_width - self.rect.width)
         self.rect.y = random.randrange(-100, -40)
@@ -98,7 +108,7 @@ class Enemy():
         bombs.add(bomb)
 
 
-class Bomb():
+class Bomb(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         self.image = pygame.Surface((10, 10))
@@ -114,13 +124,7 @@ class Bomb():
             self.kill()
 
 
-all_sprites = pygame.sprite.Group()
-bullets = pygame.sprite.Group()
-enemies = pygame.sprite.Group()
-bombs = pygame.sprite.Group()
 
-player = SpaceShip()
-all_sprites.add(player)
 
 for _ in range(2):
     enemy = Enemy()

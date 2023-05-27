@@ -1,6 +1,7 @@
 import pygame
-from Scripts.Entity import SpaceShip, Enemy, Bomb
-from Scripts.Movement import Player_Movement
+
+import Scripts.Entity as Entity
+import Scripts.Movement as Movement
 
 
 pygame.init()
@@ -27,14 +28,14 @@ enemies = pygame.sprite.Group()
 bombs = pygame.sprite.Group()
 
 entity_sprites = pygame.sprite.Group()
-player = SpaceShip(screen, player_image)
+player = Entity.SpaceShip(screen, player_image)
 entity_sprites.add(player)
 
 for _ in range(2):
-    enemy = Enemy(screen)
+    enemy = Entity.Enemy(screen)
     entity_sprites.add(enemy)
     enemies.add(enemy)
-    bomb = Bomb(10, 20, screen)
+    bomb = Entity.Bomb(10, 20, screen)
     entity_sprites.add(bomb)
     bombs.add(bomb)
 
@@ -54,13 +55,13 @@ while not game_over:
             if event.key == pygame.K_SPACE:
                 player.shoot(entity_sprites, bullets_sprite)
 
-    Player_Movement(event, player)
+    Movement.Player_Movement(event, player)
     entity_sprites.update()
     screen.blit(scaled_image, background)
 
     hits = pygame.sprite.groupcollide(enemies, bullets_sprite, True, True)
     for hit in hits:
-        enemy = Enemy(screen)
+        enemy = Entity.Enemy(screen)
         entity_sprites.add(enemy)
         enemies.add(enemy)
 

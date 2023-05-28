@@ -81,7 +81,7 @@ def options():  # setarile
 
 
 def main_menu():
-    pygame.mixer.music.load("../sounds/capybara.wav")
+    pygame.mixer.music.load("sounds/capybara.wav")
     pygame.mixer.music.play(-1)
     while True:
         SCREEN.blit(BG, (0, 0))

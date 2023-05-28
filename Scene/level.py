@@ -28,7 +28,6 @@ def level():
     background.width = screen_width
     background.bottomright
 
-
     bullets_sprite = pygame.sprite.Group()
     enemies = pygame.sprite.Group()
     bombs = pygame.sprite.Group()

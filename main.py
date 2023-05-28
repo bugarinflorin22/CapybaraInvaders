@@ -26,6 +26,10 @@ screenFader.create_fade_screen()
 done = True
 
 while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
     if done:
         screen.blit(scaled_image, background)
         screenFader.update_fade_screen()
@@ -36,10 +40,6 @@ while running:
             screen.blit(scaled_image, background)
             pygame.display.flip()
             done = False
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
 
     clock.tick(60)
 

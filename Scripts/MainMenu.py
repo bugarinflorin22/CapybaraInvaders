@@ -4,16 +4,14 @@ from button import Button
 pygame.init()
 
 SCREEN = pygame.display.set_mode((1920, 1080))
-#pygame.display.set_caption("MAIN MENU")
 
 BG = pygame.image.load("../Art/background.png")
-
 
 def get_font(size):  # Returns Press-Start-2P in the desired size
     return pygame.font.Font("font.ttf", size)
 
 
-def play():
+def play():   # start level
     while True:
         PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
@@ -40,7 +38,7 @@ def play():
         pygame.display.update()
 
 
-def options():
+def options():  # setarile
     while True:
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
@@ -50,11 +48,18 @@ def options():
         OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(960, 260))
         SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
 
-        OPTIONS_BACK = Button(image=None, pos=(960, 460),
-                              text_input="BACK", font=get_font(75), base_color="Black", hovering_color="Green")
+        OPTIONS_BACK = Button(image=None, pos=(960, 550),
+                              text_input="BACK", font=get_font(75), base_color="Black", hovering_color="Red")
 
         OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
         OPTIONS_BACK.update(SCREEN)
+
+        OPTIONS_Difficulty = Button(image=None, pos=(960, 400),
+                              text_input="DIFFICULTY", font=get_font(75), base_color="Black", hovering_color="Yellow")
+
+        OPTIONS_Difficulty.changeColor(OPTIONS_MOUSE_POS)
+        OPTIONS_Difficulty.update(SCREEN)
+
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -63,6 +68,8 @@ def options():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                     main_menu()
+                if OPTIONS_Difficulty.checkForInput(OPTIONS_MOUSE_POS):
+                    main_menu() # easy / medium / hard level
 
         pygame.display.update()
 

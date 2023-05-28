@@ -1,8 +1,8 @@
 import sys
-
 import pygame
 from Scripts.Button import Button
-from Scene.level import level
+import Scene.Level as level
+
 pygame.init()
 
 
@@ -34,40 +34,9 @@ class MainMenu:
         mouse_position = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONDOWN:
             if buttons[0].check_pos(mouse_position):
-                print("Play")
+               level.run_game(self.screen, event)
             if buttons[1].check_pos(mouse_position):
                 print("Options")
             if buttons[2].check_pos(mouse_position):
                 pygame.quit()
                 sys.exit()
-
-
-
-    '''while True:
-        SCREEN.blit(BG, (0, 0))
-
-        MENU_MOUSE_POS = pygame.mouse.get_pos()
-
-        PLAY_BUTTON = Button(image=pygame.image.load("Art/butoane/buton play.png"), pos=(960, 400),
-                             text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-
-
-        OPTIONS_BUTTON = Button(image=pygame.image.load("Art/butoane/buton settings.png"), pos=(960, 550),
-                                text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        QUIT_BUTTON = Button(image=pygame.image.load("Art/butoane/buton quit.png"), pos=(960, 700),
-                             text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-
-
-        for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
-            button.changeColor(MENU_MOUSE_POS)
-            button.update(SCREEN)
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            
-
-        pygame.display.update()'''
-
-

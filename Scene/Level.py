@@ -1,16 +1,9 @@
 import pygame
-import os
-import sys
-
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(parent_dir + '\Scripts')
-
 from Scripts.Entity import SpaceShip, Enemy, Bomb
 from Scripts.Movement import Player_Movement
+from Scripts.Button import Button
 
-
-class level:
-
+def run_game(screen, event):
     pygame.init()
     clock = pygame.time.Clock()
 
@@ -18,22 +11,20 @@ class level:
     white = (255, 255, 255)
     red = (255, 0, 0)
 
-    screen = pygame.display.set_mode((1920, 1080))
     screen_width, screen_height = screen.get_size()
     pygame.display.set_caption("Capybara Invaders - Chapter 1")
     background_image = pygame.image.load("Art/level/background_level.png")
-    player_image = pygame.image.load("Art/player/spaceship.png")
-    scaled_image = pygame.transform.scale(background_image, (screen.get_width(), screen.get_height()))
+    scaled_image = pygame.transform.scale(background_image, (screen_width, screen_height))
     background = scaled_image.get_rect()
     background.height = screen_height
     background.width = screen_width
-    background.bottomright
 
     bullets_sprite = pygame.sprite.Group()
     enemies = pygame.sprite.Group()
     bombs = pygame.sprite.Group()
 
     entity_sprites = pygame.sprite.Group()
+    player_image = pygame.image.load("Art/player/spaceship.png")
     player = SpaceShip(screen, player_image)
     entity_sprites.add(player)
 
@@ -83,5 +74,3 @@ class level:
         entity_sprites.draw(screen)
         pygame.display.flip()
         clock.tick(60)
-
-    pygame.quit()

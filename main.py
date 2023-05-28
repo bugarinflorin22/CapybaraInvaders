@@ -8,6 +8,7 @@ clock = pygame.time.Clock()
 
 screen = pygame.display.set_mode((1920, 1080))
 screen_width, screen_height = screen.get_size()
+pygame.display.set_caption("Capybara Invaders")
 background_image = pygame.image.load("Art/background.png")
 scaled_image = pygame.transform.scale(background_image, (screen.get_width(), screen.get_height()))
 background = scaled_image.get_rect()

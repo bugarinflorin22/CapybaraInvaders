@@ -1,5 +1,6 @@
 import pygame
 from Scripts.ScreenFader import ScreenFader
+from Scripts.MainMenu import main_menu
 
 
 pygame.init()
@@ -15,7 +16,6 @@ background = scaled_image.get_rect()
 background.height = screen_height
 background.width = screen_width
 background.bottomright
-
 fade_screen_color = (255, 0, 0, 255)
 screen_width, screen_height = screen.get_size()
 screen_fade = pygame.Surface((screen_width, screen_height), pygame.SRCALPHA)
@@ -32,6 +32,7 @@ while running:
         screenFader.alpha -= 1.2 * 2
         pygame.display.flip()
         if screenFader.alpha < 10:
+            main_menu()
             screen.blit(scaled_image, background)
             pygame.display.flip()
             done = False

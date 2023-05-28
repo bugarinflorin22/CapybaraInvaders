@@ -21,7 +21,7 @@ class Bullet(pygame.sprite.Sprite):
 class Bomb(pygame.sprite.Sprite):
     def __init__(self, x, y, screen):
         super().__init__()
-        self.image = pygame.Surface((10, 10))
+        self.image = pygame.Surface((30, 30))
         self.image.fill("black")
         self.rect = self.image.get_rect()
         self.rect.centerx = x
@@ -97,7 +97,7 @@ class Enemy(pygame.sprite.Sprite):
         bomb_sprite.add(bomb)
 
     def generate_extra_enemies():
-         for _ in range(len(enemies) * 2):
+         for _ in range(len(enemies) * 4):
             enemy = Enemy()
             all_sprites.add(enemy)
             enemies.add(enemy)

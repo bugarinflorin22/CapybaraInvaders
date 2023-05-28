@@ -70,7 +70,7 @@ while not game_over:
         entity_sprites.add(enemy)
         enemies.add(enemy)
 
-    hits = pygame.sprite.spritecollide(player, enemy, True)
+    hits = pygame.sprite.spritecollide(player, bombs, True)
     if hits:
         player.lives -= 1
         if player.lives <= 0:

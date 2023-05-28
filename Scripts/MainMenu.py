@@ -75,6 +75,8 @@ def options():  # setarile
 
 
 def main_menu():
+    bg_sound = pygame.mixer.Sound("../sounds/capybara.wav")
+    pygame.mixer.Sound.play(bg_sound)
     while True:
         SCREEN.blit(BG, (0, 0))
 

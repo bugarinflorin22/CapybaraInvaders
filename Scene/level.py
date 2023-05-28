@@ -76,8 +76,10 @@ while not game_over:
         if player.lives <= 0:
             game_over = True
 
+
     if len(enemies) == 0:
-        pass
+         generate_extra_enemies()
+         pass
 
     entity_sprites.draw(screen)
     pygame.display.flip()

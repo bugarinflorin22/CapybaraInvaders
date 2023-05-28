@@ -8,7 +8,8 @@ sys.path.append(parent_dir + '\Scripts')
 from Scripts.Entity import SpaceShip, Enemy, Bomb
 from Scripts.Movement import Player_Movement
 
-def level():
+
+class level:
 
     pygame.init()
     clock = pygame.time.Clock()

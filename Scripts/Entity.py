@@ -96,8 +96,8 @@ class Enemy(pygame.sprite.Sprite):
         sprites.add(bomb)
         bomb_sprite.add(bomb)
 
-    def generate_extra_enemies():
+    '''def generate_extra_enemies():
          for _ in range(len(enemies) * 4):
             enemy = Enemy()
             all_sprites.add(enemy)
-            enemies.add(enemy)
+            enemies.add(enemy)'''

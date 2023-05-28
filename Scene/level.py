@@ -16,7 +16,7 @@ black = (0, 0, 0)
 white = (255, 255, 255)
 red = (255, 0, 0)
 
-screen = pygame.display.set_mode((1024, 720))
+screen = pygame.display.set_mode((1920, 1080))
 screen_width, screen_height = screen.get_size()
 pygame.display.set_caption("Capybara Invaders - Chapter 1")
 background_image = pygame.image.load("../Art/level/background_level.png")

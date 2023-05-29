@@ -5,13 +5,13 @@ class Player_Movement:
     def __init__(self, event, player):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                player.speed_x = -10
+                player.speed_x = -13
             elif event.key == pygame.K_RIGHT:
-                player.speed_x = 10
+                player.speed_x = 13
             elif event.key == pygame.K_UP:
-                player.speed_y = -7
+                player.speed_y = -10
             elif event.key == pygame.K_DOWN:
-                player.speed_y = 7
+                player.speed_y = 10
 
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:

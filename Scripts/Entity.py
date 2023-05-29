@@ -19,14 +19,14 @@ class Bullet(pygame.sprite.Sprite):
 
 
 class Bomb(pygame.sprite.Sprite):
-    def __init__(self, x, y, screen):
+    def __init__(self, screen):
         super().__init__()
-        self.image = pygame.Surface((30, 30))
-        self.image.fill("black")
+        self.image = pygame.image.load("Art/level/bomba.png")
         self.rect = self.image.get_rect()
-        self.rect.centerx = x
-        self.rect.bottom = y
-        self.speed_y = 5
+        self.rect.x = random.randrange(screen.get_width() - self.rect.width)
+        self.rect.y = random.randrange(-100, -40)
+        self.speed_x = random.choice([-2, 2])
+        self.speed_y = random.randrange(4, 20)
         self.screen = screen
 
     def update(self):
@@ -86,18 +86,4 @@ class Enemy(pygame.sprite.Sprite):
         if self.rect.top < 0:
             self.rect.y += self.speed_y
         elif self.rect.bottom > self.screen.get_height():
-            self.rect.x = random.randrange(self.screen.get_width() - self.rect.width)
-            self.rect.y = random.randrange(-100, -40)
-            self.speed_x = random.choice([-2, 2])
-            self.speed_y = random.randrange(1, 4)
-
-    def drop_bomb(self, sprites, bomb_sprite):
-        bomb = Bomb(self.rect.centerx, self.rect.bottom)
-        sprites.add(bomb)
-        bomb_sprite.add(bomb)
-
-    '''def generate_extra_enemies():
-         for _ in range(len(enemies) * 4):
-            enemy = Enemy()
-            all_sprites.add(enemy)
-            enemies.add(enemy)'''
+            self.kill()

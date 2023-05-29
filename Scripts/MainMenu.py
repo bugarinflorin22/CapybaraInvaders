@@ -1,7 +1,7 @@
 import sys
 import pygame
 from Scripts.Button import Button
-import Scene.Level as level
+import Scene.Level as Level
 
 pygame.init()
 
@@ -30,11 +30,14 @@ class MainMenu:
         buttons.append(settings)
         buttons.append(quit)
 
-    def update(self, event, buttons):
+    def update(self, event, buttons, obj):
         mouse_position = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONDOWN:
             if buttons[0].check_pos(mouse_position):
-               level.run_game(self.screen, event)
+                chapter1_img = pygame.image.load("Art/level/background_level.png")
+                chapter1 = Level.Level(self.screen, event, chapter1_img)
+                obj.append(chapter1)
+                chapter1.create()
             if buttons[1].check_pos(mouse_position):
                 print("Options")
             if buttons[2].check_pos(mouse_position):

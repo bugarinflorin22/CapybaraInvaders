@@ -22,17 +22,22 @@ screen_fade = pygame.Surface((screen_width, screen_height), pygame.SRCALPHA)
 
 buttons_sprites = pygame.sprite.Group()
 buttons = []
+obj = []
 
 screenFader = ScreenFader(screen, screen_fade, screen_width, screen_height, 255)
 screenFader.create_fade_screen()
 main_menu = MainMenu(screen, buttons_sprites)
 
 done = True
+space_key = False
 
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                space_key = True
 
     if done:
         screen.blit(scaled_image, background)
@@ -46,8 +51,12 @@ while running:
             pygame.display.flip()
             done = False
 
-    main_menu.update(event, buttons)
-
+    if screenFader.alpha < 10:
+        main_menu.update(event, buttons, obj)
+    for ch in obj:
+        ch.update(space_key, event)
+    if space_key:
+        space_key = False
     clock.tick(60)
 
 pygame.quit()
